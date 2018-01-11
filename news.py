@@ -74,7 +74,6 @@ HTML_WRAP = '''\
 .popular-section .articles-img.books:after {
   content: "";
   position: absolute;
-  background-image: url("https://www.mysafetytrainingonline.com/wp-content/uploads/2017/09/Ibooks.png");
   width: 50px;
   height: 50px;
 }
@@ -82,8 +81,6 @@ HTML_WRAP = '''\
 .popular-section .articles-img.authors:after {
   content: "";
   position: absolute;
-  background-color: #000;
-  background-image: url("https://allauthor.com/images/author-icon.png");
   width: 40px;
   height: 40px;
 }
@@ -91,7 +88,6 @@ HTML_WRAP = '''\
 .popular-section .articles-img.error-log:after {
   content: "";
   position: absolute;
-  background-image: url("https://errornetwork.com/files/2017/09/Error-128.png");
   width: 30px;
   height: 30px;
   top: 8px;
@@ -183,34 +179,39 @@ def get_popular_article_titles():
                                        title, views in get_code_items(query1))
     return popular_articles_titles_
 
-    def get_popular_authors_names():
-        popular_authors_names = "".join(POPULAR_AUTHORS % (name, views) for
-                                        name, views in get_code_items(query2))
-        return popular_authors_names
 
-    def geterror_and_percent():
-        popular_authors_names = "".join(POPULAR_ERROR_DATE % (date, percent)
-                                        for date, percent in
-                                        get_code_items(query3))
-        return popular_authors_names
+def get_popular_authors_names():
+    popular_authors_names = "".join(POPULAR_AUTHORS % (name, views) for
+                                    name, views in get_code_items(query2))
+    return popular_authors_names
 
-    @app.route('/', methods=['GET'])
-    def popular_articles():
-        names_popular_authors = get_popular_article_titles()
-        html = HTML_WRAP % names_popular_authors
-        return html
 
-    @app.route('/popular-authors', methods=['GET'])
-    def popular_authors():
-        names_popular_authors_ = get_popular_authors_names()
-        html = HTML_WRAP % names_popular_authors_
-        return html
+def geterror_and_percent():
+    popular_authors_names = "".join(POPULAR_ERROR_DATE % (date, percent)
+                                    for date, percent in
+                                    get_code_items(query3))
+    return popular_authors_names
 
-    @app.route('/error-log', methods=['GET'])
-    def popular_error_log_day():
-        names_popular_authors_2 = geterror_and_percent()
-        html = HTML_WRAP % names_popular_authors_2
-        return html
+
+@app.route('/', methods=['GET'])
+def popular_articles():
+    names_popular_authors = get_popular_article_titles()
+    html = HTML_WRAP % names_popular_authors
+    return html
+
+
+@app.route('/popular-authors', methods=['GET'])
+def popular_authors():
+    names_popular_authors_ = get_popular_authors_names()
+    html = HTML_WRAP % names_popular_authors_
+    return html
+
+
+@app.route('/error-log', methods=['GET'])
+def popular_error_log_day():
+    names_popular_authors_2 = geterror_and_percent()
+    html = HTML_WRAP % names_popular_authors_2
+    return html
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8000)
