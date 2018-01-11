@@ -53,7 +53,7 @@ The database consist of three tables
 
 ## View the results
 
-* on the termoinal disconnect from the database `\q`
+* on the terminal disconnect from the database `\q`
 * navigate to the vagrant folder `cd /vagrant`
 * navigate to the news folder `cd news`
 * run the python file `python news.py`
