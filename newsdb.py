@@ -3,6 +3,7 @@ import psycopg2
 
 DBNAME = "news"
 
+
 def get_items(query):
     """ Returns results based on query passed as a param"""
     db = psycopg2.connect(database=DBNAME)
