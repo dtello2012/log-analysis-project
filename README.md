@@ -12,8 +12,9 @@ The database consist of three tables
 * articles
 * log
 
-## Running the project
+## Notes for instructors for running the project
 
+* clone this project and add it to the vagrant folder
 * download a virtual machine from [https://www.vagrantup.com/downloads.html] vagrant
 * After installing, run the command `vagrant up` in a terminal
 * When vagrant up is finished running, you will get your shell prompt back. At this point, you can run `vagrant ssh` to log in to your newly installed Linux VM!
